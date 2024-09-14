@@ -3,15 +3,18 @@ body {
     text-align: center;
     margin: 0;
     padding: 0;
+    background-image: url('背景.png');
+    background-size: cover; /* 画面全体を埋める */
+    background-position: center; /* 画像を中央に配置 */
 }
 
 h1, input#page-title {
-    font-size: 2em; /* 元のフォントサイズに戻します */
+    font-size: 2em;
     margin: 20px 0;
 }
 
 input[type="text"] {
-    font-size: 1.5em; /* 元のフォントサイズに戻します */
+    font-size: 1.5em;
     margin: 10px 0;
     padding: 8px;
     text-align: center;
