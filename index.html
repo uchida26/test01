@@ -3,16 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>タイトル</title>
+    <title>編集可能なページ</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>タイトル</h1>
-
+    <input type="text" id="page-title" value="タイトル" />
     <div class="menu">
-        <h2>メニュー名1</h2>
+        <input type="text" class="menu-name" id="menuName1" value="メニュー名1" />
         <div class="button-container" id="menu1">
-            <!-- ボタンのテンプレート -->
             <div class="button" onclick="toggleButton(this)">
                 <span class="close-btn" onclick="removeButton(this)">×</span>
             </div>
@@ -25,7 +23,7 @@
             <div class="add-button" onclick="addButton('menu1')">+</div>
         </div>
 
-        <h2>メニュー名2</h2>
+        <input type="text" class="menu-name" id="menuName2" value="メニュー名2" />
         <div class="button-container" id="menu2">
             <div class="button" onclick="toggleButton(this)">
                 <span class="close-btn" onclick="removeButton(this)">×</span>
@@ -33,6 +31,8 @@
             <div class="add-button" onclick="addButton('menu2')">+</div>
         </div>
     </div>
+
+    <div id="last-updated">最終更新日時: </div>
 
     <script src="script.js"></script>
 </body>
