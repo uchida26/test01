@@ -6,12 +6,12 @@ body {
 }
 
 h1 {
-    font-size: 12em;
+    font-size: 6em;
     margin: 20px 0;
 }
 
 input[type="text"]{
-    font-size: 4em;
+    font-size: 2em;
     margin: 10px 0;
     padding: 8px;
     text-align: center;
