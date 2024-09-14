@@ -10,13 +10,6 @@ function removeButton(closeBtn) {
     saveData();
 }
 
-function rearrangeButtons(container) {
-    const buttons = container.querySelectorAll('.button');
-    buttons.forEach(button => {
-        container.appendChild(button);
-    });
-}
-
 function addButton(menuId) {
     const container = document.getElementById(menuId);
     const newButton = document.createElement('div');
@@ -31,7 +24,7 @@ function addButton(menuId) {
 
 function updateTimestamp() {
     const now = new Date();
-    const formattedDate = `${now.getFullYear()}/${now.getMonth()+1}/${now.getDate()} ${now.getHours()}:${String(now.getMinutes()).padStart(2, '0')}`;
+    const formattedDate = `${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate()} ${now.getHours()}:${String(now.getMinutes()).padStart(2, '0')}`;
     document.getElementById('last-updated').innerText = `最終更新日時: ${formattedDate}`;
     localStorage.setItem('lastUpdated', formattedDate);
 }
@@ -76,7 +69,7 @@ function loadData() {
             };
             menu1Container.appendChild(button);
         });
-        menu1Container.appendChild(document.querySelector('#menu2 .add-button').cloneNode(true)); // add-buttonを再追加
+        menu1Container.appendChild(createAddButton('menu1')); // 正しい add-button を追加
 
         const menu2Container = document.getElementById('menu2');
         menu2Container.innerHTML = ''; // 現在のボタンをクリア
@@ -90,13 +83,23 @@ function loadData() {
             };
             menu2Container.appendChild(button);
         });
-        menu2Container.appendChild(document.querySelector('#menu1 .add-button').cloneNode(true)); // add-buttonを再追加
+        menu2Container.appendChild(createAddButton('menu2')); // 正しい add-button を追加
     }
 
     const lastUpdated = localStorage.getItem('lastUpdated');
     if (lastUpdated) {
         document.getElementById('last-updated').innerText = `最終更新日時: ${lastUpdated}`;
     }
+}
+
+function createAddButton(menuId) {
+    const addButton = document.createElement('div');
+    addButton.classList.add('add-button');
+    addButton.textContent = '+';
+    addButton.onclick = function() {
+        addButton(menuId);
+    };
+    return addButton;
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
