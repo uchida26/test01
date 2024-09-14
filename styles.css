@@ -5,13 +5,13 @@ body {
     padding: 0;
 }
 
-h1 {
-    font-size: 6em;
+h1, input#page-title {
+    font-size: 8em; /* タイトルのフォントサイズを4倍に */
     margin: 20px 0;
 }
 
-input[type="text"]{
-    font-size: 2em;
+input[type="text"] {
+    font-size: 3em;
     margin: 10px 0;
     padding: 8px;
     text-align: center;
