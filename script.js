@@ -15,7 +15,7 @@ function addButtonFunction(menuId) {
     const newButton = document.createElement('div');
     newButton.classList.add('button');
     newButton.innerHTML = `
-        <input type="text" placeholder="追加する文字" class="button-text" onclick="event.stopPropagation();"/>
+        <input type="text" placeholder="追加" class="button-text" onclick="event.stopPropagation();"/>
         <span class="close-btn" onclick="removeButton(this)">×</span>
     `;
     newButton.onclick = function() {
@@ -102,29 +102,45 @@ function loadData() {
         });
     } else {
         // データが存在しない場合、各メニューに3つのデフォルトボタンを追加
-        for (let i = 0; i < 3; i++) {
+        const defaultValues = [
+            { text: 'ホテル', active: true },
+            { text: '', active: false },
+            { text: '', active: false }
+        ];
+
+        defaultValues.forEach(({ text, active }, index) => {
             const button1 = document.createElement('div');
             button1.classList.add('button');
+            if (index === 0 && active) button1.classList.add('active');  // 最初のボタンをアクティブに
             button1.innerHTML = `
-                <input type="text" placeholder="追加" class="button-text" onclick="event.stopPropagation();" />
+                <input type="text" value="${text}" placeholder="追加" class="button-text" onclick="event.stopPropagation();" />
                 <span class="close-btn" onclick="removeButton(this)">×</span>
             `;
             button1.onclick = function () {
                 toggleButton(button1);
             };
             menu1Container.appendChild(button1);
+        });
 
+        const defaultValues2 = [
+            { text: '縄', active: true },
+            { text: '', active: false },
+            { text: '', active: false }
+        ];
+
+        defaultValues2.forEach(({ text, active }, index) => {
             const button2 = document.createElement('div');
             button2.classList.add('button');
+            if (index === 0 && active) button2.classList.add('active');  // 最初のボタンをアクティブに
             button2.innerHTML = `
-                <input type="text" placeholder="追加" class="button-text" onclick="event.stopPropagation();" />
+                <input type="text" value="${text}" placeholder="追加" class="button-text" onclick="event.stopPropagation();" />
                 <span class="close-btn" onclick="removeButton(this)">×</span>
             `;
             button2.onclick = function () {
                 toggleButton(button2);
             };
             menu2Container.appendChild(button2);
-        }
+        });
     }
 
     menu1Container.appendChild(createAddButton('menu1'));
