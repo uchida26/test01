@@ -80,7 +80,7 @@ input[type="text"] {
     border: none;
     text-align: center;
     background: transparent;
-    font-size: 0.8em; /* フォントサイズを少し小さく */
+    font-size: 0.4em; /* フォントサイズを半分に調整 */
     color: black;
     outline: none;
 }
