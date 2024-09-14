@@ -74,6 +74,16 @@ input[type="text"] {
     z-index: 1;
 }
 
+.button-text {
+    width: 100%;
+    border: none;
+    text-align: center;
+    background: transparent;
+    font-size: 1em;
+    color: black;
+    outline: none;
+}
+
 #last-updated {
     margin: 20px;
     font-size: 0.9em;
