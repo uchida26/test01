@@ -53,7 +53,10 @@ input[type="text"] {
 }
 
 .button.active {
-    background-color: green;
+    /* ボタンがアクティブなときに背景画像を設定 */
+    background-image: url('ボタン.png');
+    background-size: cover; /* 画像をボタン全体にフィットさせる */
+    background-position: center; /* 画像をボタンの中央に配置 */
 }
 
 .close-btn {
