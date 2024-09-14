@@ -4,8 +4,8 @@ body {
     margin: 0;
     padding: 0;
     background-image: url('背景.png');
-    background-size: cover; /* 画面全体を埋める */
-    background-position: center; /* 画像を中央に配置 */
+    background-size: cover;
+    background-position: center;
 }
 
 h1, input#page-title {
@@ -35,8 +35,8 @@ input[type="text"] {
 }
 
 .button, .add-button {
-    width: 60px;
-    height: 60px;
+    width: 80px; /* ボタンの幅を調整 */
+    height: 80px; /* ボタンの高さを調整 */
     background-color: lightgray;
     margin: 10px;
     display: flex;
@@ -45,6 +45,8 @@ input[type="text"] {
     position: relative;
     cursor: pointer;
     border-radius: 5px;
+    flex-basis: calc(33.333% - 20px); /* 3つのボタンを1行に配置 */
+    box-sizing: border-box;
 }
 
 .add-button {
@@ -53,10 +55,9 @@ input[type="text"] {
 }
 
 .button.active {
-    /* ボタンがアクティブなときに背景画像を設定 */
     background-image: url('ボタン.png');
-    background-size: cover; /* 画像をボタン全体にフィットさせる */
-    background-position: center; /* 画像をボタンの中央に配置 */
+    background-size: cover;
+    background-position: center;
 }
 
 .close-btn {
@@ -75,11 +76,11 @@ input[type="text"] {
 }
 
 .button-text {
-    width: 100%;
+    width: calc(100% - 24px);
     border: none;
     text-align: center;
     background: transparent;
-    font-size: 1em;
+    font-size: 0.8em; /* フォントサイズを少し小さく */
     color: black;
     outline: none;
 }
