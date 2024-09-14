@@ -77,12 +77,16 @@ input[type="text"] {
 
 .button-text {
     width: calc(100% - 12px);
+    height: 100%;
     border: none;
     text-align: center;
     background: transparent;
-    font-size: 12px;
+    font-size: 6px; /* フォントサイズを半分に調整 */
     color: black;
     outline: none;
+    overflow: hidden;
+    word-wrap: break-word; /* 端で文字を折り返す */
+    line-height: 1.2em; /* 行間を調整して見切れを防ぐ */
 }
 
 #last-updated {
