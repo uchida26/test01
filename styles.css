@@ -5,18 +5,19 @@ body {
     padding: 0;
 }
 
-.editable-title {
+h1 {
     font-size: 2em;
     margin: 20px 0;
-    border: none;
-    text-align: center;
 }
 
-.editable-menu-name {
-    font-size: 1.2em;
-    margin: 20px 0;
-    border: none;
+input[type="text"]{
+    font-size: 1.5em;
+    margin: 10px 0;
+    padding: 8px;
     text-align: center;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    box-sizing: border-box;
 }
 
 .menu {
@@ -68,7 +69,7 @@ body {
 }
 
 #last-updated {
-    margin: 20px 0;
+    margin: 20px;
     font-size: 0.9em;
     color: gray;
 }
