@@ -146,10 +146,4 @@ function createAddButton(menuId) {
     return addButton;
 }
 
-document.addEventListener('DOMContentLoaded', (event) => {
-    loadData();
-
-    document.getElementById('page-title').addEventListener('input', saveData);
-    document.getElementById('menuName1').addEventListener('input', saveData);
-    document.getElementById('menuName2').addEventListener('input', saveData);
-});
+document.addEventListener('DOMContentLoaded', loadData);
