@@ -59,15 +59,20 @@ function loadData() {
     const title = localStorage.getItem('pageTitle');
     const menuName1 = localStorage.getItem('menuName1');
     const menuName2 = localStorage.getItem('menuName2');
-    const buttonsState = JSON.parse(localStorage.getItem('buttonsState'));
+    const buttonsStateStr = localStorage.getItem('buttonsState');
+    const buttonsState = buttonsStateStr ? JSON.parse(buttonsStateStr) : null;
 
     if (title) document.getElementById('page-title').value = title;
     if (menuName1) document.getElementById('menuName1').value = menuName1;
     if (menuName2) document.getElementById('menuName2').value = menuName2;
 
     const menu1Container = document.getElementById('menu1');
+    const menu2Container = document.getElementById('menu2');
+
     menu1Container.innerHTML = ''; // 現在のボタンをクリア
-    if (buttonsState && buttonsState.menu1) {
+    menu2Container.innerHTML = ''; // 現在のボタンをクリア
+
+    if (buttonsState) {
         buttonsState.menu1.forEach(({ active, text }) => {
             const button = document.createElement('div');
             button.classList.add('button');
@@ -81,12 +86,7 @@ function loadData() {
             };
             menu1Container.appendChild(button);
         });
-    }
-    menu1Container.appendChild(createAddButton('menu1')); // 正しい add-button を追加
 
-    const menu2Container = document.getElementById('menu2');
-    menu2Container.innerHTML = ''; // 現在のボタンをクリア
-    if (buttonsState && buttonsState.menu2) {
         buttonsState.menu2.forEach(({ active, text }) => {
             const button = document.createElement('div');
             button.classList.add('button');
@@ -100,8 +100,35 @@ function loadData() {
             };
             menu2Container.appendChild(button);
         });
+    } else {
+        // データが存在しない場合、各メニューに3つのデフォルトボタンを追加
+        for (let i = 0; i < 3; i++) {
+            const button1 = document.createElement('div');
+            button1.classList.add('button');
+            button1.innerHTML = `
+                <input type="text" placeholder="追加する文字" class="button-text" onclick="event.stopPropagation();" />
+                <span class="close-btn" onclick="removeButton(this)">×</span>
+            `;
+            button1.onclick = function () {
+                toggleButton(button1);
+            };
+            menu1Container.appendChild(button1);
+
+            const button2 = document.createElement('div');
+            button2.classList.add('button');
+            button2.innerHTML = `
+                <input type="text" placeholder="追加する文字" class="button-text" onclick="event.stopPropagation();" />
+                <span class="close-btn" onclick="removeButton(this)">×</span>
+            `;
+            button2.onclick = function () {
+                toggleButton(button2);
+            };
+            menu2Container.appendChild(button2);
+        }
     }
-    menu2Container.appendChild(createAddButton('menu2')); // 正しい add-button を追加
+
+    menu1Container.appendChild(createAddButton('menu1'));
+    menu2Container.appendChild(createAddButton('menu2'));
 
     const lastUpdated = localStorage.getItem('lastUpdated');
     if (lastUpdated) {
