@@ -78,7 +78,7 @@ function loadData() {
             button.classList.add('button');
             if (active) button.classList.add('active');
             button.innerHTML = `
-                <input type="text" value="${text}" placeholder="追加する文字" class="button-text" onclick="event.stopPropagation();" />
+                <input type="text" value="${text}" placeholder="追加" class="button-text" onclick="event.stopPropagation();" />
                 <span class="close-btn" onclick="removeButton(this)">×</span>
             `;
             button.onclick = function () {
@@ -92,7 +92,7 @@ function loadData() {
             button.classList.add('button');
             if (active) button.classList.add('active');
             button.innerHTML = `
-                <input type="text" value="${text}" placeholder="追加する文字" class="button-text" onclick="event.stopPropagation();" />
+                <input type="text" value="${text}" placeholder="追加" class="button-text" onclick="event.stopPropagation();" />
                 <span class="close-btn" onclick="removeButton(this)">×</span>
             `;
             button.onclick = function () {
@@ -106,7 +106,7 @@ function loadData() {
             const button1 = document.createElement('div');
             button1.classList.add('button');
             button1.innerHTML = `
-                <input type="text" placeholder="追加する文字" class="button-text" onclick="event.stopPropagation();" />
+                <input type="text" placeholder="追加" class="button-text" onclick="event.stopPropagation();" />
                 <span class="close-btn" onclick="removeButton(this)">×</span>
             `;
             button1.onclick = function () {
@@ -117,7 +117,7 @@ function loadData() {
             const button2 = document.createElement('div');
             button2.classList.add('button');
             button2.innerHTML = `
-                <input type="text" placeholder="追加する文字" class="button-text" onclick="event.stopPropagation();" />
+                <input type="text" placeholder="追加" class="button-text" onclick="event.stopPropagation();" />
                 <span class="close-btn" onclick="removeButton(this)">×</span>
             `;
             button2.onclick = function () {
