@@ -56,9 +56,9 @@ function loadData() {
     if (menuName1) document.getElementById('menuName1').value = menuName1;
     if (menuName2) document.getElementById('menuName2').value = menuName2;
 
-    if (buttonsState) {
-        const menu1Container = document.getElementById('menu1');
-        menu1Container.innerHTML = ''; // 現在のボタンをクリア
+    const menu1Container = document.getElementById('menu1');
+    menu1Container.innerHTML = ''; // 現在のボタンをクリア
+    if (buttonsState && buttonsState.menu1) {
         buttonsState.menu1.forEach((active) => {
             const button = document.createElement('div');
             button.classList.add('button');
@@ -69,10 +69,12 @@ function loadData() {
             };
             menu1Container.appendChild(button);
         });
-        menu1Container.appendChild(createAddButton('menu1')); // 正しい add-button を追加
+    }
+    menu1Container.appendChild(createAddButton('menu1')); // 正しい add-button を追加
 
-        const menu2Container = document.getElementById('menu2');
-        menu2Container.innerHTML = ''; // 現在のボタンをクリア
+    const menu2Container = document.getElementById('menu2');
+    menu2Container.innerHTML = ''; // 現在のボタンをクリア
+    if (buttonsState && buttonsState.menu2) {
         buttonsState.menu2.forEach((active) => {
             const button = document.createElement('div');
             button.classList.add('button');
@@ -83,8 +85,8 @@ function loadData() {
             };
             menu2Container.appendChild(button);
         });
-        menu2Container.appendChild(createAddButton('menu2')); // 正しい add-button を追加
     }
+    menu2Container.appendChild(createAddButton('menu2')); // 正しい add-button を追加
 
     const lastUpdated = localStorage.getItem('lastUpdated');
     if (lastUpdated) {
