@@ -7,7 +7,6 @@ function removeButton(closeBtn) {
     const button = closeBtn.parentElement;
     const container = button.parentElement;
     container.removeChild(button);
-    rearrangeButtons(container);
     saveData();
 }
 
@@ -32,7 +31,7 @@ function addButton(menuId) {
 
 function updateTimestamp() {
     const now = new Date();
-    const formattedDate = `${now.getFullYear()}/${now.getMonth()+1}/${now.getDate()} ${now.getHours()}:${now.getMinutes()}`;
+    const formattedDate = `${now.getFullYear()}/${now.getMonth()+1}/${now.getDate()} ${now.getHours()}:${String(now.getMinutes()).padStart(2, '0')}`;
     document.getElementById('last-updated').innerText = `最終更新日時: ${formattedDate}`;
     localStorage.setItem('lastUpdated', formattedDate);
 }
@@ -43,8 +42,8 @@ function saveData() {
     const menuName2 = document.getElementById('menuName2').value;
 
     const buttonsState = {
-        menu1: [...document.querySelectorAll('#menu1 .button')].map(button => button.classList.contains('active')),
-        menu2: [...document.querySelectorAll('#menu2 .button')].map(button => button.classList.contains('active'))
+        menu1: Array.from(document.querySelectorAll('#menu1 .button')).map(button => button.classList.contains('active')),
+        menu2: Array.from(document.querySelectorAll('#menu2 .button')).map(button => button.classList.contains('active'))
     };
 
     localStorage.setItem('pageTitle', title);
@@ -65,15 +64,33 @@ function loadData() {
     if (menuName2) document.getElementById('menuName2').value = menuName2;
 
     if (buttonsState) {
-        const menu1Buttons = document.querySelectorAll('#menu1 .button');
-        buttonsState.menu1.forEach((active, i) => {
-            if (active) menu1Buttons[i].classList.add('active');
+        const menu1Container = document.getElementById('menu1');
+        menu1Container.innerHTML = ''; // 現在のボタンをクリア
+        buttonsState.menu1.forEach((active) => {
+            const button = document.createElement('div');
+            button.classList.add('button');
+            if (active) button.classList.add('active');
+            button.innerHTML = '<span class="close-btn" onclick="removeButton(this)">×</span>';
+            button.onclick = function () {
+                toggleButton(button);
+            };
+            menu1Container.appendChild(button);
         });
+        menu1Container.appendChild(document.querySelector('#menu2 .add-button').cloneNode(true)); // add-buttonを再追加
 
-        const menu2Buttons = document.querySelectorAll('#menu2 .button');
-        buttonsState.menu2.forEach((active, i) => {
-            if (active) menu2Buttons[i].classList.add('active');
+        const menu2Container = document.getElementById('menu2');
+        menu2Container.innerHTML = ''; // 現在のボタンをクリア
+        buttonsState.menu2.forEach((active) => {
+            const button = document.createElement('div');
+            button.classList.add('button');
+            if (active) button.classList.add('active');
+            button.innerHTML = '<span class="close-btn" onclick="removeButton(this)">×</span>';
+            button.onclick = function () {
+                toggleButton(button);
+            };
+            menu2Container.appendChild(button);
         });
+        menu2Container.appendChild(document.querySelector('#menu1 .add-button').cloneNode(true)); // add-buttonを再追加
     }
 
     const lastUpdated = localStorage.getItem('lastUpdated');
