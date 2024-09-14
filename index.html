@@ -11,13 +11,16 @@
     <div class="menu">
         <input type="text" class="menu-name" id="menuName1" value="したいこと・されたいこと" />
         <div class="button-container" id="menu1">
-            <div class="button" onclick="toggleButton(this)">
+            <div class="button">
+                <input type="text" placeholder="追加する文字" class="button-text" onclick="event.stopPropagation();"/>
                 <span class="close-btn" onclick="removeButton(this)">×</span>
             </div>
-            <div class="button" onclick="toggleButton(this)">
+            <div class="button">
+                <input type="text" placeholder="追加する文字" class="button-text" onclick="event.stopPropagation();"/>
                 <span class="close-btn" onclick="removeButton(this)">×</span>
             </div>
-            <div class="button" onclick="toggleButton(this)">
+            <div class="button">
+                <input type="text" placeholder="追加する文字" class="button-text" onclick="event.stopPropagation();"/>
                 <span class="close-btn" onclick="removeButton(this)">×</span>
             </div>
             <div class="add-button" onclick="addButtonFunction('menu1')">+</div>
@@ -25,7 +28,8 @@
 
         <input type="text" class="menu-name" id="menuName2" value="使いたいもの" />
         <div class="button-container" id="menu2">
-            <div class="button" onclick="toggleButton(this)">
+            <div class="button">
+                <input type="text" placeholder="追加する文字" class="button-text" onclick="event.stopPropagation();"/>
                 <span class="close-btn" onclick="removeButton(this)">×</span>
             </div>
             <div class="add-button" onclick="addButtonFunction('menu2')">+</div>
