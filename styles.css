@@ -6,12 +6,12 @@ body {
 }
 
 h1, input#page-title {
-    font-size: 8em; /* タイトルのフォントサイズを4倍に */
+    font-size: 4em; /* タイトルのフォントサイズを4倍に */
     margin: 20px 0;
 }
 
 input[type="text"] {
-    font-size: 3em;
+    font-size: 2em;
     margin: 10px 0;
     padding: 8px;
     text-align: center;
