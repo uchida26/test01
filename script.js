@@ -10,11 +10,14 @@ function removeButton(closeBtn) {
     saveData();
 }
 
-function addButton(menuId) {
+function addButtonFunction(menuId) {
     const container = document.getElementById(menuId);
     const newButton = document.createElement('div');
     newButton.classList.add('button');
-    newButton.innerHTML = '<span class="close-btn" onclick="removeButton(this)">×</span>';
+    newButton.innerHTML = `
+        <input type="text" placeholder="追加する文字" class="button-text" onclick="event.stopPropagation();"/>
+        <span class="close-btn" onclick="removeButton(this)">×</span>
+    `;
     newButton.onclick = function() {
         toggleButton(newButton);
     };
@@ -35,8 +38,14 @@ function saveData() {
     const menuName2 = document.getElementById('menuName2').value;
 
     const buttonsState = {
-        menu1: Array.from(document.querySelectorAll('#menu1 .button')).map(button => button.classList.contains('active')),
-        menu2: Array.from(document.querySelectorAll('#menu2 .button')).map(button => button.classList.contains('active'))
+        menu1: Array.from(document.querySelectorAll('#menu1 .button')).map(button => ({
+            active: button.classList.contains('active'),
+            text: button.querySelector('.button-text').value
+        })),
+        menu2: Array.from(document.querySelectorAll('#menu2 .button')).map(button => ({
+            active: button.classList.contains('active'),
+            text: button.querySelector('.button-text').value
+        }))
     };
 
     localStorage.setItem('pageTitle', title);
@@ -59,11 +68,14 @@ function loadData() {
     const menu1Container = document.getElementById('menu1');
     menu1Container.innerHTML = ''; // 現在のボタンをクリア
     if (buttonsState && buttonsState.menu1) {
-        buttonsState.menu1.forEach((active) => {
+        buttonsState.menu1.forEach(({ active, text }) => {
             const button = document.createElement('div');
             button.classList.add('button');
             if (active) button.classList.add('active');
-            button.innerHTML = '<span class="close-btn" onclick="removeButton(this)">×</span>';
+            button.innerHTML = `
+                <input type="text" value="${text}" placeholder="追加する文字" class="button-text" onclick="event.stopPropagation();" />
+                <span class="close-btn" onclick="removeButton(this)">×</span>
+            `;
             button.onclick = function () {
                 toggleButton(button);
             };
@@ -75,11 +87,14 @@ function loadData() {
     const menu2Container = document.getElementById('menu2');
     menu2Container.innerHTML = ''; // 現在のボタンをクリア
     if (buttonsState && buttonsState.menu2) {
-        buttonsState.menu2.forEach((active) => {
+        buttonsState.menu2.forEach(({ active, text }) => {
             const button = document.createElement('div');
             button.classList.add('button');
             if (active) button.classList.add('active');
-            button.innerHTML = '<span class="close-btn" onclick="removeButton(this)">×</span>';
+            button.innerHTML = `
+                <input type="text" value="${text}" placeholder="追加する文字" class="button-text" onclick="event.stopPropagation();" />
+                <span class="close-btn" onclick="removeButton(this)">×</span>
+            `;
             button.onclick = function () {
                 toggleButton(button);
             };
@@ -102,18 +117,6 @@ function createAddButton(menuId) {
         addButtonFunction(menuId);
     };
     return addButton;
-}
-
-function addButtonFunction(menuId) {
-    const container = document.getElementById(menuId);
-    const newButton = document.createElement('div');
-    newButton.classList.add('button');
-    newButton.innerHTML = '<span class="close-btn" onclick="removeButton(this)">×</span>';
-    newButton.onclick = function() {
-        toggleButton(newButton);
-    };
-    container.insertBefore(newButton, container.querySelector('.add-button'));
-    saveData();
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
