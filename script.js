@@ -99,9 +99,21 @@ function createAddButton(menuId) {
     addButton.classList.add('add-button');
     addButton.textContent = '+';
     addButton.onclick = function() {
-        addButton(menuId);
+        addButtonFunction(menuId);
     };
     return addButton;
+}
+
+function addButtonFunction(menuId) {
+    const container = document.getElementById(menuId);
+    const newButton = document.createElement('div');
+    newButton.classList.add('button');
+    newButton.innerHTML = '<span class="close-btn" onclick="removeButton(this)">×</span>';
+    newButton.onclick = function() {
+        toggleButton(newButton);
+    };
+    container.insertBefore(newButton, container.querySelector('.add-button'));
+    saveData();
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
