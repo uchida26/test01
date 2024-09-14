@@ -76,11 +76,11 @@ input[type="text"] {
 }
 
 .button-text {
-    width: calc(100% - 24px);
+    width: calc(100% - 12px);
     border: none;
     text-align: center;
     background: transparent;
-    font-size: 0.3em; /* フォントサイズを半分に調整 */
+    font-size: 0.2em; /* フォントサイズを半分に調整 */
     color: black;
     outline: none;
 }
